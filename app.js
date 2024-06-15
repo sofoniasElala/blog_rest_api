@@ -3,6 +3,7 @@ import path from 'path';
 import session from 'express-session';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import indexRouter from './routes/index.js';
 import 'dotenv/config';
 
 const mongoDB = process.env.MONGODB_URI;
@@ -19,15 +20,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+app.use('/', indexRouter)
+
 app.listen(PORT, ()=> {
     console.log('app listening on port 3000!');
 });
 
-app.on('error', onError);
+/** app.on('error', onError);
 
-/**
+**
  * Event listener for HTTP server "error" event.
- */
+ *
 
 function onError(error) {
     if (error.syscall !== 'listen') {
@@ -51,4 +54,4 @@ function onError(error) {
       default:
         throw error;
     }
-  }
+  } */
