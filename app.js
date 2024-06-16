@@ -15,7 +15,7 @@ main().catch((err) => {console.log(err)});
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// TO-DO: allow lists on cors?
+// TODO: allow lists on cors?
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
