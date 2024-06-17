@@ -19,7 +19,13 @@ const validationAndSanitationMiddlewareFns = [
     body('roles.*').escape(),
 ]
 
-//TODO: GET list of all users for admin - protected route?
+//TODO: protected route?
+
+//GET: all users
+export const user_list = asyncHandler(async (req, res, next) => {
+    const allUsers = User.find().sort({role: 1}).exec();
+    res.status(200).json({allUsers});
+})
 
 // GET:  detail page for a specific user.
 export const user_detail = asyncHandler(async (req, res, next) => {

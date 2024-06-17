@@ -1,5 +1,3 @@
-import User from '../models/user.js';
-import Tag from '../models/tag.js';
 import Post from '../models/post.js';
 import Comment from '../models/comment.js';
 import asyncHandler from 'express-async-handler';
@@ -24,8 +22,8 @@ const validationAndSanitationMiddlewareFns = [
 //TODO: pagination/caching
 // GET: all posts
 export const post_list = asyncHandler(async (req, res, next) => {
-    const allPosts = await Post.find().sort({date: -1}).exec();
-    res.status(200).json(allPosts);
+    const allPosts = await Post.find({published: true}).sort({date: -1}).exec();
+    res.status(200).json({allPosts});
 });
 
 //GET: specific post
