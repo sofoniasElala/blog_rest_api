@@ -34,7 +34,7 @@ export const comment_create = [
     })
 ];
 
-//PUT: update comment
+//PUT: update comment - protected with JWT
 export const comment_update = [
     body('text').escape(),
     body('date').toDate(),
@@ -56,7 +56,7 @@ export const comment_update = [
     })
 ]
 
-//DELETE: delete comment
+//DELETE: delete comment - protected with JWT
 export const comment_delete = asyncHandler(async (req, res, next) => {
     await Comment.findByIdAndDelete(req.params.commentid);
     res.status(200).json(null);

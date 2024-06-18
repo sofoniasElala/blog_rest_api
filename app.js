@@ -31,7 +31,6 @@ const cookieExtractor = function(req) {
     if (req && req.cookies) {
         token = req.cookies['jwt'];
     }
-    console.log(token);
     return token;
 };
 const options = {
@@ -44,7 +43,6 @@ const options = {
 
     console.log(jwt_payload);
     try {
-        // Example using async/await
         const user = await User.findById({ _id: jwt_payload.sub }).exec();
 
         if (!user) {

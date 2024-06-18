@@ -36,7 +36,7 @@ export const post_detail = asyncHandler(async (req, res, next) => {
 });
 
 
-//POST: create post
+//POST: create post - protected with JWT
 export const post_create = [
     ...validationAndSanitationMiddlewareFns,
     asyncHandler(async (req, res, next) => {
@@ -58,11 +58,11 @@ export const post_create = [
 })];
 
 
-//PUT: update post
+//PUT: update post - protected with JWT
 export const post_update = [
     ...validationAndSanitationMiddlewareFns,
     asyncHandler(async (req, res, next) => {
-        const errors = validationResult(req);
+        const errors = validationResult(req); 
         if(!errors.isEmpty()){
             res.status(400).json({sanitizedInputs: req.body, errors: errors});
         } else {
@@ -82,7 +82,7 @@ export const post_update = [
     })
 ]
 
-//DELETE: delete post
+//DELETE: delete post - protected with JWT
 export const post_delete = asyncHandler(async (req, res, next) => {
     await Post.findByIdAndDelete(req.params.postid);
     res.status(200).json(null);
