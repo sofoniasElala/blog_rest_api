@@ -30,7 +30,7 @@ export const user_list = asyncHandler(async (req, res, next) => {
 // GET:  detail page for a specific user.
 export const user_detail = asyncHandler(async (req, res, next) => {
     const [user, allPostByUser] = await Promise.all([
-        User.findById(req.params.userid).exec(),
+        User.findById(req.params.userid).select('username roles').exec(),
         Post.find({author: req.params.userid}).sort({date: -1}).exec()
     ]);
 
