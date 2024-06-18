@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import createError from 'http-errors';
 import {Strategy as JWTStrategy} from 'passport-jwt';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
@@ -60,6 +61,22 @@ app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/tags', tagRouter);
 app.use('/', indexRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    next(createError(404));
+});
+  
+// error handler
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+
+    res.json({
+      status: 'error',
+      message: err.message,
+      stack: req.app.get('env') === 'development' ? err.stack : {}
+    });
+  });
 
 app.listen(PORT, ()=> {
     console.log(`app listening on port ${PORT}!`);
