@@ -1,6 +1,8 @@
 import express from 'express';
+import rateLimit from 'express-rate-limit';
 import cors from 'cors';
 import createError from 'http-errors';
+import compression from 'compression';
 import {Strategy as JWTStrategy} from 'passport-jwt';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
@@ -18,11 +20,18 @@ async function main() {
 }
 main().catch((err) => {console.log(err)});
 
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 10,
+});
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // TODO: allow lists on cors?
 app.use(cors());
+app.use(limiter);
+app.use(compression());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
