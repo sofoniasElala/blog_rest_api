@@ -57,7 +57,7 @@ export const user_create = [
 
 ];
 
-//PUT: update user
+//PUT: update user - protected with JWT
 export const user_update = [
     ...validationAndSanitationMiddlewareFns,
     asyncHandler(async (req, res, next) => {
@@ -79,7 +79,7 @@ export const user_update = [
     })
 ];
 
-//DELETE: delete user
+//DELETE: delete user - protected with JWT
 export const user_delete = asyncHandler(async (req, res, next) => {
     await User.findByIdAndDelete(req.params.userid);
     res.status(200).json(null);
