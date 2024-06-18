@@ -18,7 +18,7 @@ export const tag_posts_list = asyncHandler(async (req, res, next) => {
     res.status(200).json({tag, allPostsOnTag});
 });
 
-//POST: create tag
+//POST: create tag - protected with JWT
 export const tag_create = [
     body('name').trim().isLength({min: 1}).escape(),
     asyncHandler(async (req, res, next) => {
@@ -34,7 +34,7 @@ export const tag_create = [
     })
 ]
 
-//PUT: update tag
+//PUT: update tag - protected with JWT
 export const tag_update = [
     body('name').trim().isLength({min: 1}).escape(),
     asyncHandler(async (req, res, next) => {
@@ -43,6 +43,7 @@ export const tag_update = [
             res.status(400).json({sanitizedInputs: req.body, errors: errors});
         } else {
             const tag = new Tag({
+                _id: req.params.tagid,
                 name: req.body.name
             });
             const updatedTag = await Tag.findByIdAndUpdate(req.params.tagid, tag, {new: true});
@@ -51,7 +52,7 @@ export const tag_update = [
     })
 ];
 
-//DELETE: delete tag
+//DELETE: delete tag - protected with JWT
 export const tag_delete = asyncHandler(async (req, res, next) => {
     await Tag.findByIdAndDelete(req.params.tagid);
     res.status(200).json(null);
