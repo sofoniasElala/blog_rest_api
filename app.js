@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3000;
 
 // TODO: allow lists on cors?
 app.use(cors());
-app.use(limiter);
+//app.use(limiter); unnecessary for now;
 app.use(compression());
 app.use(express.json());
 app.use(cookieParser());
