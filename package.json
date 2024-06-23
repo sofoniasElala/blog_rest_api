@@ -1,6 +1,9 @@
 {
   "name": "blog_rest_api",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=16.14.2"
+  },
   "description": "an API for the blog",
   "type": "module",
   "main": "app.js",
