@@ -26,7 +26,7 @@ function getSignedJwtToken(user) {
 
 router.post('/sign-up', user_controller.user_create); 
 
-router.post('/log-in', asyncHandler(async (req, res, next) => {
+router.post('/log-in', async (req, res, next) => {
     const user = await User.findOne({ username: req.body.username });
         if (!user) {
           res.status(401).json({ success: false, message: "Incorrect username" });
@@ -41,7 +41,7 @@ router.post('/log-in', asyncHandler(async (req, res, next) => {
         twoWeeksExpiration.setDate(twoWeeksExpiration.getDate() + 14);
         res.cookie('jwt', token, {httpOnly: true, secure: true, sameSite: 'Strict', expires: twoWeeksExpiration });
         res.status(200).json({success: true, user: {id: user.id, username: user.username, roles: user.roles}})
-}));
+});
 
 router.post('/log-out', (req, res) => {
     res.clearCookie('jwt', {
