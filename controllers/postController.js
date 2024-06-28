@@ -5,24 +5,19 @@ import {body, validationResult} from 'express-validator';
 
 
 const validationAndSanitationMiddlewareFns = [
-    // Convert the tag to an array.
-    (req, res, next) => {
-        if (!Array.isArray(req.body.tag)) {
-          req.body.tag =
-            typeof req.body.tag === "undefined" ? [] : [req.body.tag];
-        }
-        next();
-      },
-    body('imageUrl').optional({ values: 'falsy'}).trim().escape(),
-    body('title').isLength({min: 1, max: 100}).trim().escape(),
+    body('tag').toArray(),
+    body('image').optional({ values: 'falsy'}).trim().escape(),
+    body('title').isLength({min: 1, max: 250}).trim().escape(),
     body('text').escape(),
+    body('authorName').trim().escape(),
+    body('imageOwner').optional({ values: 'falsy'}).trim().escape(),
     body('date').toDate(),
     body('published').toBoolean(),
 ]
 //TODO: pagination/caching
 // GET: all posts
 export const post_list = asyncHandler(async (req, res, next) => {
-    const allPosts = await Post.find({published: true}).sort({date: -1}).exec();
+    const allPosts = await Post.find({published: "on"}).sort({date: -1}).exec();
     res.status(200).json({allPosts});
 });
 
@@ -46,7 +41,9 @@ export const post_create = [
         } else {
             const postCreationStatus = await Post.create({
                 author: req.body.userid, //TODO: make sure to create a hidden input with userid set as value or..
+                authorName: req.body.authorName,
                 image: req.body.image,
+                imageOwner: req.body.imageOwner,
                 title: req.body.title,
                 text: req.body.text,
                 date: req.body.date,
@@ -69,7 +66,9 @@ export const post_update = [
             const post = new Post({
                 _id: req.params.postid,
                 author: req.body.userid, //TODO: make sure to create a hidden input with userid set as value or..
+                authorName: req.body.authorName,
                 image: req.body.image,
+                imageOwner: req.body.imageOwner,
                 title: req.body.title,
                 text: req.body.text,
                 date: req.body.date,
