@@ -29,7 +29,16 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // TODO: allow lists on cors?
-app.use(cors());
+const allowList = ['https://sofonias-elala-blog-rest-api.glitch.me'];
+app.use(cors((req, callback) => {
+    let corsOptions;
+    if (allowList.indexOf(req.header('Origin')) !== -1) {
+        corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+      } else {
+        corsOptions = { origin: false } // disable CORS for this request
+      }
+      callback(null, corsOptions)
+}));
 //app.use(limiter); unnecessary for now;
 app.use(compression());
 app.use(express.json());
