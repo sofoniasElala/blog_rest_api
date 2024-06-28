@@ -12,7 +12,6 @@ const validationAndSanitationMiddlewareFns = [
     body('authorName').trim().escape(),
     body('imageOwner').optional({ values: 'falsy'}).trim().escape(),
     body('date').toDate(),
-    body('published').toBoolean(),
 ]
 //TODO: pagination/caching
 // GET: all posts

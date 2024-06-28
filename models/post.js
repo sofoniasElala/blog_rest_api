@@ -8,7 +8,7 @@ const PostSchema = new Schema({
     title: {type: String, required: true},
     text: {type: String, required: true},
     date: {type: Schema.Types.Date},
-    published: {type: Schema.Types.Boolean, default: "off"},
+    published: {type: Schema.Types.String, default: "off"},
     tag: [{type: Schema.Types.ObjectId, ref: 'Tag'}]
 });
 const PostModel = mongoose.model('Post', PostSchema);
