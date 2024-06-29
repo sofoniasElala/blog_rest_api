@@ -20,7 +20,7 @@ function getSignedJwtToken(user) {
   
     const signedToken = jsonwebtoken.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '14d' });
   
-    return signedToken;
+    return "Bearer " + signedToken;
   }
   
 
@@ -41,8 +41,8 @@ router.post('/log-in', asyncHandler(async (req, res, next) => {
         const token = getSignedJwtToken(user);
         const twoWeeksExpiration = new Date();
         twoWeeksExpiration.setDate(twoWeeksExpiration.getDate() + 14);
-        res.cookie('jwt', token, {httpOnly: true, secure: true, sameSite: 'none', expires: twoWeeksExpiration });
-        res.status(200).json({success: true, user: {id: user.id, username: user.username, roles: user.roles}})
+       // res.cookie('jwt', token, {httpOnly: true, secure: true, sameSite: 'none', expires: twoWeeksExpiration });
+        res.status(200).json({success: true, token: token, user: {id: user.id, username: user.username, roles: user.roles}})
 }));
 
 router.post('/log-out', (req, res) => {

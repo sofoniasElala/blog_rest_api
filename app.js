@@ -3,7 +3,7 @@ import rateLimit from 'express-rate-limit';
 import cors from 'cors';
 import createError from 'http-errors';
 import compression from 'compression';
-import {Strategy as JWTStrategy} from 'passport-jwt';
+import {Strategy as JWTStrategy, ExtractJwt} from 'passport-jwt';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import mongoose from 'mongoose';
@@ -53,7 +53,7 @@ const cookieExtractor = function(req) {
     return token;
 };
 const options = {
-    jwtFromRequest: cookieExtractor,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.ACCESS_TOKEN_SECRET,
   };
 
