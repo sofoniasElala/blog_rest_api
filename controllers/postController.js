@@ -39,7 +39,7 @@ export const post_create = [
             res.status(400).json({sanitizedInputs: req.body, errors: errors})
         } else {
             const postCreationStatus = await Post.create({
-                author: req.body.userid, //TODO: make sure to create a hidden input with userid set as value or..
+                author: req.user.id, 
                 authorName: req.body.authorName,
                 image: req.body.image,
                 imageOwner: req.body.imageOwner,
@@ -64,7 +64,7 @@ export const post_update = [
         } else {
             const post = new Post({
                 _id: req.params.postid,
-                author: req.body.userid, //TODO: make sure to create a hidden input with userid set as value or..
+                author: req.user.id, 
                 authorName: req.body.authorName,
                 image: req.body.image,
                 imageOwner: req.body.imageOwner,
