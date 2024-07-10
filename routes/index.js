@@ -45,6 +45,7 @@ router.post('/log-in', asyncHandler(async (req, res, next) => {
         res.status(200).json({success: true, token: token, user: {id: user.id, username: user.username, roles: user.roles}})
 }));
 
+/* --- not using cookies anymore but might do later ---
 router.post('/log-out', (req, res) => {
     res.clearCookie('jwt', {
       httpOnly: true,
@@ -53,7 +54,7 @@ router.post('/log-out', (req, res) => {
     });
     res.status(200).json({success: true});
   });
-
+*/
 router.get('/', post_controller.post_list);
 
 export default router;

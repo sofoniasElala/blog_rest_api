@@ -33,9 +33,9 @@ const allowList = ['http://localhost:5173'];
 app.use(cors((req, callback) => {
     let corsOptions;
     if (allowList.indexOf(req.header('Origin')) !== -1) {
-        corsOptions = { origin: true, credentials: true, } // reflect (enable) the requested origin in the CORS response
+        corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
       } else {
-        corsOptions = { origin: false, credentials: true } // disable CORS for this request
+        corsOptions = { origin: false } // disable CORS for this request
       }
       callback(null, corsOptions)
 }));
@@ -45,13 +45,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 
-const cookieExtractor = function(req) {
-    let token = null;
-    if (req && req.cookies) {
-        token = req.cookies['jwt'];
-    }
-    return token;
-};
+
 const options = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.ACCESS_TOKEN_SECRET,

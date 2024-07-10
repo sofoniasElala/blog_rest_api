@@ -24,7 +24,7 @@ export const post_list = asyncHandler(async (req, res, next) => {
 export const post_detail = asyncHandler(async (req, res, next) => {
     const [post, allCommentsOnPost] = await Promise.all([
         Post.findById(req.params.postid).populate(['tag', {path: 'author', select: 'id username roles'}]).exec(),
-        Comment.find({post: req.params.postid}).sort({date: -1}).exec()
+        Comment.find({post: req.params.postid}).sort({date: -1}).populate({path: 'author', select: 'id username'}).exec()
     ]);
     res.status(200).json({post, allCommentsOnPost});
 });
