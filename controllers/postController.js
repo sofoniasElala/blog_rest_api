@@ -14,9 +14,15 @@ const validationAndSanitationMiddlewareFns = [
     body('date').toDate(),
 ]
 //TODO: pagination/caching
-// GET: all posts
+// GET: all published posts
 export const post_list = asyncHandler(async (req, res, next) => {
     const allPosts = await Post.find({published: "on"}).sort({date: -1}).exec();
+    res.status(200).json({allPosts});
+});
+
+// GET: all posts
+export const post_list_all = asyncHandler(async (req, res, next) => {
+    const allPosts = await Post.find().sort({date: -1}).exec();
     res.status(200).json({allPosts});
 });
 

@@ -5,6 +5,8 @@ import * as post_controller from '../controllers/postController.js';
 import asyncHandler from 'express-async-handler';
 import jsonwebtoken from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import passport from 'passport';
+import { isAdmin } from '../lib/roleActionCheck.js';
 
 
 const router = express.Router();
@@ -56,5 +58,6 @@ router.post('/log-out', (req, res) => {
   });
 */
 router.get('/', post_controller.post_list);
+router.get('/all', passport.authenticate('jwt', { session: false }), isAdmin, post_controller.post_list_all);
 
 export default router;
