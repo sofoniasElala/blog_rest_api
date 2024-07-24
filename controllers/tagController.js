@@ -55,5 +55,5 @@ export const tag_update = [
 //DELETE: delete tag - protected with JWT
 export const tag_delete = asyncHandler(async (req, res, next) => {
     await Tag.findByIdAndDelete(req.params.tagid);
-    res.status(200).json(null);
+    res.status(200).json({success: true});
 })

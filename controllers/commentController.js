@@ -59,5 +59,5 @@ export const comment_update = [
 //DELETE: delete comment - protected with JWT
 export const comment_delete = asyncHandler(async (req, res, next) => {
     await Comment.findByIdAndDelete(req.params.commentid);
-    res.status(200).json(null);
+    res.status(200).json({success: true});
 })

@@ -82,5 +82,5 @@ export const user_update = [
 //DELETE: delete user - protected with JWT
 export const user_delete = asyncHandler(async (req, res, next) => {
     await User.findByIdAndDelete(req.params.userid);
-    res.status(200).json(null);
+    res.status(200).json({success: true});
 })

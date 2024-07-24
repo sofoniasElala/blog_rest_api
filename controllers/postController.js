@@ -89,6 +89,6 @@ export const post_update = [
 //DELETE: delete post - protected with JWT
 export const post_delete = asyncHandler(async (req, res, next) => {
     await Post.findByIdAndDelete(req.params.postid);
-    res.status(200).json(null);
+    res.status(200).json({success: true});
 })
 
