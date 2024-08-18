@@ -8,7 +8,6 @@ const validationAndSanitationMiddlewareFns = [
     body('tag').toArray(),
     body('image').optional({ values: 'falsy'}).trim().escape(),
     body('title').isLength({min: 1, max: 250}).trim().escape(),
-    body('text').escape(),
     body('authorName').trim().escape(),
     body('imageOwner').optional({ values: 'falsy'}).trim().escape(),
     body('date').toDate(),
