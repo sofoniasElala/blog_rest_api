@@ -1,6 +1,6 @@
 # ***My Blog*** API
 ## Description
-My Blog API is a simple RESTful API for managing ***My Blog*** posts, comments, tags, and users. It allows an admin to perform basic CRUD operations on blog posts, comments, and users, and it supports user authentication.  
+My Blog API is a simple RESTful API for managing ***My Blog*** posts, comments, tags, and users. It allows a user to perform basic CRUD operations on blog posts, comments, and users, and it supports user authentication.  
 [![Static Badge](https://img.shields.io/badge/Live%20API-blue)](https://sofonias-elala-blog-rest-api.glitch.me/)
 
 ## Features
@@ -12,7 +12,7 @@ My Blog API is a simple RESTful API for managing ***My Blog*** posts, comments, 
 ### UML DIAGRAM
 ![uml-diagram](https://github.com/sofoniasElala/blog_rest_api/blob/main/UML_diagram.png)
 
-### API Endpoints
+### Endpoints
 
 - **GET /all**: Retrieve a list of all blog posts. _(Requires Authentication)_
 - **GET /posts**: Retrieve a list of all published blog posts.
