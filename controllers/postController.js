@@ -15,7 +15,7 @@ const validationAndSanitationMiddlewareFns = [
 //TODO: pagination/caching
 // GET: all published posts
 export const post_list = asyncHandler(async (req, res, next) => {
-    const allPosts = await Post.find({published: "on"}).sort({date: -1}).exec();
+    const allPosts = await Post.find({published: "on"}).limit(req.query.limit).sort({date: -1}).exec();
     res.status(200).json({allPosts});
 });
 
