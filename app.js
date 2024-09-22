@@ -29,7 +29,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // TODO: remove localhost once done with development
-const allowList = ['http://localhost:5173', 'https://sofonias-elala-myblog-cms.netlify.app'];
+const allowList = ['http://localhost:5173', 'https://sofonias-elala-myblog-cms.netlify.app', 'https://sofonias-elala-myblog-main.netlify.app'];
 app.use(cors((req, callback) => {
     let corsOptions;
     if (allowList.indexOf(req.header('Origin')) !== -1) {
