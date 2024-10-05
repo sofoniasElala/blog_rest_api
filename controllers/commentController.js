@@ -24,7 +24,7 @@ export const comment_create = [
            res.status(400).json({sanitizedInputs: req.body, errors: errors});
         } else {
             const commentCreationStatus = await Comment.create({
-                author: req.body.userid, //TODO: make sure to create a hidden input with userid set as value or..
+                author: req.body.userid,
                 text: req.body.text,
                 date: req.body.date,
                 post: req.params.postid
@@ -45,7 +45,7 @@ export const comment_update = [
         } else {
             const comment = new Comment({
                 _id: req.params.commentid,
-                author: req.body.userid, //TODO: make sure to create a hidden input with userid set as value or..
+                author: req.body.userid,
                 text: req.body.text,
                 date: req.body.date,
                 post: req.params.postid

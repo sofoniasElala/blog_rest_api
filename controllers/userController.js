@@ -19,7 +19,6 @@ const validationAndSanitationMiddlewareFns = [
     body('roles.*').escape(),
 ]
 
-//TODO: protected route?
 
 //GET: all users
 export const user_list = asyncHandler(async (req, res, next) => {
@@ -49,7 +48,7 @@ export const user_create = [
             const userCreationStatus = await User.create({
                 username: req.body.username, 
                 password: await bcrypt.hash(req.body.password, 10),
-                roles: req.body.roles //TODO: make sure its the correct type
+                roles: req.body.roles
             });
             res.status(200).json({id: userCreationStatus._id});
         }
@@ -71,7 +70,7 @@ export const user_update = [
                 _id: req.params.userid,
                 username: req.body.username, 
                 password:  updatedPassword,
-                roles: req.body.roles //TODO: make sure its the correct type
+                roles: req.body.roles
             });
             const updatedUser = await User.findByIdAndUpdate(req.params.userid, user, {new: true})
             res.status(200).json({id: updatedUser._id});
