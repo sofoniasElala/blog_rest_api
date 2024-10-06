@@ -8,8 +8,8 @@ My Blog API is a simple RESTful API for managing ***My Blog*** posts, comments, 
 - User authentication with JWT
 - CRUD operations as mentioned above  
 
-## TODOs 
- * add pagination
+## Future features 
+ * pagination
 ## Links to the other ***My Blog*** repos
  * [![Static Badge](https://img.shields.io/badge/Content%20Management%20System-green)](https://github.com/sofoniasElala/blog-content-management-system)
 ### UML DIAGRAM
