@@ -1,7 +1,7 @@
 # ***My Blog*** API
 ## Description
 My Blog API is a simple RESTful API for managing ***My Blog*** posts, comments, tags, and users. It allows a user to perform basic CRUD operations on blog posts, comments, and users, and it supports user authentication.  
-[![Static Badge](https://img.shields.io/badge/Live%20API-blue)](https://sofonias-elala-blog-rest-api.glitch.me/)
+[![Static Badge](https://img.shields.io/badge/Live%20API-blue)](https://sofonias-elala-blog-rest-api.glitch.me/) [![Static Badge](https://img.shields.io/badge/NodeJS%20Server%20on%20Glitch-purple)](https://glitch.com/~sofonias-elala-blog-rest-api)
 
 ## Features
 

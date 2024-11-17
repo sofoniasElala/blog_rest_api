@@ -43,7 +43,7 @@ export const user_create = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
-            res.status(400).json({sanitizedInputs: req.body, errors: errors})
+            res.status(400).json({success: false, sanitizedInputs: req.body, errors: errors.array()[0].msg})
         } else {
             const userCreationStatus = await User.create({
                 username: req.body.username, 
@@ -62,7 +62,7 @@ export const user_update = [
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
-            res.status(400).json({sanitizedInputs: req.body, errors: errors})
+            res.status(400).json({success: false, sanitizedInputs: req.body, errors: errors.array()[0].msg})
         } else {
             const originalUserData = await User.findOne({_id: req.params.userid}, 'password').exec();
             const updatedPassword = bcrypt.compare(req.body.password, originalUserData.password) ? originalUserData.password : await bcrypt.hash(req.body.password, 10);
