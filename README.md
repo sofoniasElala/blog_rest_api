@@ -12,6 +12,7 @@ My Blog API is a simple RESTful API for managing ***My Blog*** posts, comments, 
  * pagination
 ## Links to the other ***My Blog*** repos
  * [![Static Badge](https://img.shields.io/badge/Content%20Management%20System-green)](https://github.com/sofoniasElala/blog-content-management-system)
+ * [![Static Badge](https://img.shields.io/badge/Main%20Site-green)](https://github.com/sofoniasElala/my-blog-main)
 ### UML DIAGRAM
 ![uml-diagram](https://github.com/sofoniasElala/blog_rest_api/blob/main/UML_diagram.png)
 
