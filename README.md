@@ -17,8 +17,8 @@ My Blog API is a simple RESTful API for managing ***My Blog*** posts, comments, 
 
 ### Endpoints
 
+- **GET /**: Retrieve a list of all published blog posts.
 - **GET /all**: Retrieve a list of all blog posts. _(Requires Authentication)_
-- **GET /posts**: Retrieve a list of all published blog posts.
 - **POST /posts**: Create a new blog post. _(Requires Authentication)_
 - **GET /posts/{id}**: Retrieve a specific blog post by its ID.
 - **PUT /posts/{id}**: Update an existing blog post by its ID. _(Requires Authentication)_
